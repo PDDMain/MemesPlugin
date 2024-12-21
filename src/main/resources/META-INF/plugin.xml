@@ -9,10 +9,14 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.pddmain.memesplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <toolWindow factoryClass="com.github.pddmain.memesplugin.toolWindow.MemeToolWindowFactory" id="MemeToolWindow"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.pddmain.memesplugin.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
+    <actions>
+        <action
+            id="com.github.pddmain.memesplugin.action.CreateMemeWindowAction"
+            class="com.github.pddmain.memesplugin.action.CreateMemeWindowAction"
+            text="Create Meme Window"
+            description="Creates a Meme Window with meme that follows your mouse and resizes"/>
+    </actions>
 </idea-plugin>
