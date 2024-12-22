@@ -34,6 +34,7 @@ repositories {
 dependencies {
     testImplementation("io.mockk:mockk:${providers.gradleProperty("mockkVersion").get()}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${providers.gradleProperty("junitVersion").get()}")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:${providers.gradleProperty("junitVersion").get()}")
     testImplementation("org.jetbrains.kotlin:kotlin-test:${libs.plugins.kotlin.get().version}")
 
     // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-dependencies-extension.html

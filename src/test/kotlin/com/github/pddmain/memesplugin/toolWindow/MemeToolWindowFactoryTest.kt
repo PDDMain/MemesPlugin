@@ -1,22 +1,23 @@
 package com.github.pddmain.memesplugin.toolWindow
 
 import com.github.pddmain.memesplugin.MyBundle
+import com.github.pddmain.memesplugin.service.ScalingFactorService
 import com.intellij.openapi.actionSystem.ActionManager
 import com.intellij.openapi.actionSystem.AnAction
+import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.ui.content.Content
-import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.junit5.MockKExtension
-import io.mockk.mockk
-import io.mockk.mockkStatic
-import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import com.intellij.ui.content.ContentFactory
+import io.mockk.*
 import io.mockk.impl.annotations.RelaxedMockK
+import io.mockk.mockk
 import org.junit.jupiter.api.Nested
 import javax.swing.JButton
 import kotlin.test.assertNotNull
@@ -48,11 +49,10 @@ class MemeToolWindowFactoryTest(
     @Nested
     @ExtendWith(MockKExtension::class)
     inner class MemeToolWindowTest(
-        @MockK private val project: Project,
         @MockK private val actionManager: ActionManager,
         @RelaxedMockK private val mockAction: AnAction,
     ) {
-        private val myToolWindow = MemeToolWindowFactory.MemeToolWindow(project)
+        private val myToolWindow = MemeToolWindowFactory.MemeToolWindow()
 
         @BeforeEach
         fun setUp() {
@@ -68,10 +68,17 @@ class MemeToolWindowFactoryTest(
 
             assertNotNull(button, "The button 'Create Meme Window' should be present.")
 
+            mockkStatic(AnActionEvent::class)
+            val dataContext = slot<DataContext>()
+            every { AnActionEvent.createFromDataContext("MyToolWindow", null, capture(dataContext)) } returns mockk{
+                every { mockAction.actionPerformed(this@mockk) } returns mockk()
+            }
             button.doClick()
 
             verify { actionManager.getAction(MyBundle.message("action.createMemeWindowAction")) }
             verify { mockAction.actionPerformed(any()) }
+            verify { AnActionEvent.createFromDataContext("MyToolWindow", null, any()) }
+            assert(dataContext.captured.getData("service") is ScalingFactorService)
         }
     }
 }
