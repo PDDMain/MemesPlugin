@@ -8,7 +8,12 @@
 
 
 <!-- Plugin description -->
+The Meme Plugin is a fun and interactive tool for your IDE that creates a dynamic window displaying a meme picture. The window resizes dynamically based on your mouse position.
 
+You can open the meme window in two ways:
+
+* Run the `Create Meme Window` action from the IDE's action menu.
+* Click the `Create Meme Window` button in the plugin's dedicated IDE tool window.
 <!-- Plugin description end -->
 
 ## Installation
