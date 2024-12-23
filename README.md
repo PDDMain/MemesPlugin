@@ -1,8 +1,8 @@
 # MemesPlugin
 
 ![Build](https://github.com/PDDMain/MemesPlugin/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/26177.svg)](https://plugins.jetbrains.com/plugin/26177)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/26177.svg)](https://plugins.jetbrains.com/plugin/26177)
 
 ## Template ToDo list
 - [x] Create a new [IntelliJ Platform Plugin Template][template] project.
